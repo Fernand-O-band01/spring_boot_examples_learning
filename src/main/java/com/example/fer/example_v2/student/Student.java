@@ -1,25 +1,40 @@
 package com.example.fer.example_v2.student;
 
+import jakarta.persistence.*;
+
 import java.time.LocalDate;
 
+
+@Entity
+@Table(name = "student")
 public class Student {
 
     public Student() {
     }
 
+    @Id
+    @GeneratedValue
+    private Integer id;
+
     private String firstname;
     private String lastname;
     private LocalDate dateOfBirth;
+
+    @Column(
+            unique = true
+    )
     private String email;
+    @Transient
     private int age;
 
 
-    public Student(String firstname, String lastname, LocalDate dateOfBirth, String email, int age) {
+    public Student(String firstname, String lastname, LocalDate dateOfBirth, String email, int age, Integer id) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.dateOfBirth = dateOfBirth;
         this.email = email;
         this.age = age;
+        this.id = id;
     }
 
 
