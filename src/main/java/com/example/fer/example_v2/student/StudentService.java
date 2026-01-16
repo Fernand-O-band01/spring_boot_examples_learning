@@ -6,20 +6,22 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.util.List;
 
-@Service
-public class StudentService {
 
-    public List<Student> findAllStudents(){
-        return List.of(
-                new Student(
-                        "Fernando",
-                        "Obando",
-                        LocalDate.now(),
-                        "fer.exmaple@.com",
-                        21
-                )
-        );
-    }
+public interface StudentService {
 
+    //Post
+    Student save(Student s);
+
+    //Get
+    List<Student> findAllStudents();
+
+    //Get
+    Student findByEmail(String email);
+
+    //Path
+    Student update(Student s);
+
+    //Delete
+    void delete(String email);
 
 }
