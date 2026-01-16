@@ -1,8 +1,6 @@
 package com.example.fer.example_v2.student;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -15,6 +13,34 @@ public class StudentController {
 
     public StudentController(StudentService studentService) {
         this.studentService = studentService;
+    }
+
+    @PostMapping
+    public Student save(
+            @RequestBody Student student
+    ){
+        return studentService.save(student);
+    }
+
+    @GetMapping("{email}")
+    public Student findByEmail(
+        @PathVariable String email
+    ){
+        return studentService.findByEmail(email);
+    }
+
+    @PutMapping
+    public Student updateStudent(
+            @RequestBody Student student
+    ){
+        return studentService.update(student);
+    }
+
+    @DeleteMapping("{email}")
+    public void delete(
+            @PathVariable String email
+    ){
+        studentService.delete(email);
     }
 
     @GetMapping
